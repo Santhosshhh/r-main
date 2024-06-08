@@ -1,5 +1,18 @@
 {
+  "name": "jit-hotel---1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "descrambler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "react-router-dom": "^6.23.1"
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "uuid": "^9.0.1"
   }
 }
