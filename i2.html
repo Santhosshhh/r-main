@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="s2.css" />
+    <title>Kosra Airlines</title>
+    <script src="server.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__logo">Kosra Airlines</div>
+      <ul class="nav__links">
+        <li class="link"><a href="index.html">Home</a></li>
+        <li class="link"><a href="about.html">About</a></li>
+        <li class="link"><a href="#">Offers</a></li>
+        <li class="link"><a href="#">Seats</a></li>
+        <li class="link"><a href="#">Destinations</a></li>
+      </ul>
+      <a href="contact.html" class="btn">Contact</a>
+    </nav>
+    <header class="section__container header__container">
+      <h1 class="section__header">Find And Book<br />A Great Experience</h1>
+      <center>
+        <video
+          src="assets/airplane.mp4"
+          alt="header"
+          autoplay
+          preload
+          muted
+          loop
+          style="height: 700px; border-radius: 200px"
+        ></video>
+      </center>
+    </header>
+
+    <section class="section__container booking__container">
+      <div class="booking__nav">
+        <span>Economy Class</span>
+        <span>Business Class</span>
+        <span>First Class</span>
+      </div>
+      <form id="flightSearchForm">
+        <div class="form__group" id="extra">
+          <span><i class="ri-map-pin-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input
+                type="text"
+                id="from_location"
+                list="from_locations"
+                placeholder=" "
+              />
+              <datalist id="from_locations"></datalist>
+              <label for="from_location" style="top: 7px">From</label>
+            </div>
+            <p>Where are you starting from?</p>
+          </div>
+        </div>
+        <div class="form__group" id="extra">
+          <span><i class="ri-map-pin-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input
+                type="text"
+                id="to_location"
+                list="to_locations"
+                placeholder=" "
+              />
+              <datalist id="to_locations"></datalist>
+              <label for="to_location" style="top: 1px">Destination</label>
+            </div>
+            <p>Where are you going?</p>
+          </div>
+        </div>
+        <div class="form__group">
+          <span><i class="ri-user-3-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input type="number" id="travellers" placeholder=" " />
+              <label for="travellers">Travellers</label>
+            </div>
+            <p>Add guests</p>
+          </div>
+        </div>
+        <div class="form__group">
+          <span><i class="ri-calendar-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input type="date" id="departure" placeholder=" " />
+              <label for="departure">Departure</label>
+            </div>
+            <p>Add date</p>
+          </div>
+        </div>
+        <div class="form__group">
+          <span><i class="ri-calendar-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input type="date" id="return" placeholder=" " />
+              <label for="return">Return</label>
+            </div>
+            <p>Add date</p>
+          </div>
+        </div>
+        <center>
+          <button type="button" class="btn" onclick="searchFlights()">
+            <i class="ri-search-line"></i>
+          </button>
+        </center>
+      </form>
+    </section>
+
+    <section
+      class="section__container"
+      id="flightResults"
+      style="display: none"
+    >
+      <h2 class="section__header">Available Flights</h2>
+      <div class="flights__grid" id="flightsGrid">
+        <!-- Flight results will be inserted here -->
+      </div>
+    </section>
+
+    <script src="i2.js"></script>
+    <script>
+      function searchFlights() {
+        const from = document.getElementById("from_location").value;
+        const to = document.getElementById("to_location").value;
+
+        // Make an AJAX request to the server to get flight data
+        $.ajax({
+          url: "/search",
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({ from, to }),
+          success: function (data) {
+            displayFlights(data);
+          },
+          error: function (xhr, status, error) {
+            console.error("Error:", error);
+          },
+        });
+      }
+
+      function displayFlights(flights) {
+        const flightResults = document.getElementById("flightResults");
+        const flightsGrid = document.getElementById("flightsGrid");
+
+        // Clear previous results
+        flightsGrid.innerHTML = "";
+
+        if (flights.length === 0) {
+          flightResults.style.display = "block";
+          flightsGrid.innerHTML = "<p>No flights found.</p>";
+          return;
+        }
+
+        // Display each flight
+        flights.forEach((flight) => {
+          const flightDiv = document.createElement("div");
+          flightDiv.classList.add("flight");
+          flightDiv.innerHTML = `
+                    <div class="flight-info">
+                        <h3>${flight.from} to ${flight.to}</h3>
+                        <p>Price: $${flight.price}</p>
+                    </div>
+                `;
+          flightsGrid.appendChild(flightDiv);
+        });
+
+        flightResults.style.display = "block";
+      }
+    </script>
+  </body>
+</html>

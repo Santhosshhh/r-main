@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <style>
+      /* Add some basic styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+      }
+      .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+      .header h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+      .about-us {
+        padding: 20px;
+      }
+      .about-us h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .about-us p {
+        margin-bottom: 20px;
+      }
+      /* Add some animations */
+      .animated {
+        transition: all 0.3s ease-in-out;
+      }
+      .animated:hover {
+        transform: scale(1.1);
+      }
+      /* Add some social media icons */
+      .social-media {
+        margin-top: 20px;
+      }
+      .social-media a {
+        margin-right: 10px;
+        font-size: 24px;
+        color: #333;
+        transition: all 0.3s ease-in-out;
+      }
+      .social-media a:hover {
+        color: #4caf50;
+      }
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .flex-box {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .flex-box img {
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+        margin: 0px;
+      }
+      .noMargin {
+        margin: 0px;
+      }
+
+      .one {
+        background-color: red;
+      }
+
+      .two {
+        background-color: yellow;
+      }
+
+      .three {
+        background-color: green;
+      }
+
+      .four {
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>About Us</h1>
+        <p>Learn more about our purpose and team.</p>
+      </div>
+
+      <div class="about-us">
+        <h2>Our Story</h2>
+        <p>We're passionate about creating engaging and informative SPAs.</p>
+        <p>
+          Our team consists of experienced developers and designers who are
+          dedicated to delivering high-quality products.
+        </p>
+        <h2>Meet the Team</h2>
+        <div class="flex-container">
+          <div class="flex-box">
+            <img src="assets/ras.jpeg" alt="Image 1" />
+            <img src="assets/fifi.jpg" alt="Image 2" />
+          </div>
+          <div class="flex-box">
+            <img src="assets/kav.jpg" alt="Image 3" />
+            <img src="assets/san.jpg" alt="Image 4" />
+          </div>
+        </div>
+      </div>
+      <div class="social-media">
+        <a href="#" target="_blank"
+          ><i class="fa fa-facebook" aria-hidden="true"></i
+        ></a>
+        <a href="#" target="_blank"
+          ><i class="fa fa-twitter" aria-hidden="true"></i
+        ></a>
+        <a href="#" target="_blank"
+          ><i class="fa fa-instagram" aria-hidden="true"></i
+        ></a>
+      </div>
+    </div>
+
+    <!--extra code-->
+
+    <script>
+      // Add some animations to the social media icons
+      document.querySelectorAll(".social-media a").forEach(function (a) {
+        a.addEventListener("mouseover", function () {
+          a.style.transform = "cale(1.2)";
+        });
+        a.addEventListener("mouseout", function () {
+          a.style.transform = "cale(1)";
+        });
+      });
+    </script>
+  </body>
+</html>

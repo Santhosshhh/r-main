@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <style>
+      /* Add some basic styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .input-box {
+        margin-bottom: 20px;
+      }
+      .input-box input[type="text"],
+      .input-box input[type="email"],
+      .input-box textarea {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        font-size: 16px;
+      }
+      .input-box input[type="button"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .input-box input[type="button"]:hover {
+        background-color: #3e8e41;
+      }
+      /* Add some animations */
+      .animated {
+        transition: all 0.3s ease-in-out;
+      }
+      .animated:hover {
+        transform: scale(1.1);
+      }
+      /* Add some social media icons */
+      .social-media {
+        margin-top: 20px;
+      }
+      .social-media a {
+        margin-right: 10px;
+        font-size: 24px;
+        color: #333;
+        transition: all 0.3s ease-in-out;
+      }
+      .social-media a:hover {
+        color: #4caf50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form action="#" id="myform" onsubmit="return validate();">
+        <div class="input-box">
+          <input type="text" placeholder="Enter your name" id="name" />
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="Enter your email" id="email" />
+        </div>
+        <div class="input-box">
+          <textarea placeholder="Enter your message" id="message"></textarea>
+        </div>
+        <div class="input-box">
+          <input type="button" value="Send Now" id="submit" class="animated" />
+        </div>
+      </form>
+      <div class="social-media">
+        <a href="#" target="_blank"
+          ><i class="fa fa-facebook" aria-hidden="true"></i
+        ></a>
+        <a href="#" target="_blank"
+          ><i class="fa fa-twitter" aria-hidden="true"></i
+        ></a>
+        <a href="#" target="_blank"
+          ><i class="fa fa-instagram" aria-hidden="true"></i
+        ></a>
+      </div>
+    </div>
+    <script>
+      function validate() {
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let message = document.getElementById("message").value;
+        let error_message = document.getElementById("error_message");
+        error_message.style.padding = "10px";
+        let errors = [];
+        if (name.length < 5) {
+          errors.push("Please Enter a valid Name");
+        }
+        if (email.indexOf("@") == -1 || email.length < 6) {
+          errors.push("Please Enter a valid Email");
+        }
+        if (message.length <= 40) {
+          errors.push("Please Enter More Than 40 Characters");
+        }
+        if (errors.length > 0) {
+          error_message.innerHTML = errors.join("<br>");
+          return false;
+        } else {
+          alert("Form Submitted Successfully!");
+          return true;
+        }
+      }
+    </script>
+  </body>
+</html>
